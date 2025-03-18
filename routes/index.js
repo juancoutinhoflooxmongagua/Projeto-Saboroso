@@ -20,4 +20,20 @@ router.get('/', function(req, res, next) {
   
 });
 
+router.get('/contacts', function(req, res,next){
+  res.render('contact')
+})
+
+
+router.get('/menus', function(req, res,next){
+  res.render('menu')
+})
+
+router.get('/reservations', function(req, res,next){
+  res.render('reservation')
+})
+
+router.get('/services', function(req, res,next){
+  res.render('services')
+})
 module.exports = router;
