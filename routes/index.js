@@ -1,5 +1,4 @@
-var conn = require('../inc/db');
-
+var conn = require('./../inc/db');
 var menus = require('./../inc/menus');
 var express = require('express');
 var router = express.Router();
@@ -12,7 +11,7 @@ router.get('/', function(req, res, next) {
       title: 'Sensational Restaurant!', 
       menus: results,
       isHome: true,
-      background: 'images/img_bg_1.jpg' // Adicionei o background aqui
+      background: 'images/img_bg_1.jpg' 
     });
   });
 
