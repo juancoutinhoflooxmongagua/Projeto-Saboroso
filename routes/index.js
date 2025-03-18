@@ -7,12 +7,12 @@ router.get('/', function(req, res, next) {
   conn.query(`SELECT * FROM tb_menus ORDER BY title`, (err, results) => {
     if (err) {
       console.error("Erro na consulta SQL:", err);
-      return next(err); // Passa o erro para o middleware de erro
+      return next(err); 
     }
 
     res.render('index', { 
       title: 'Restaurante Saboroso', 
-      menus: results || [] // Garante que `menus` seja um array, evitando erro no template
+      menus: results || []
     });
   });
 });
