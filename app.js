@@ -21,6 +21,7 @@ app.use(session({
       host:'localhost',
       port:6379
     }),
+    secret: 'rootkk',
     resave: true,
     saveUninitialized: true
 }));
