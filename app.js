@@ -60,7 +60,7 @@ app.use(session({
     host: 'localhost',
     port: 6379
   }),
-  secret: 'adryan1/6',
+  secret: 'root',
   resave: true,
   saveUninitialized: true
 }));
