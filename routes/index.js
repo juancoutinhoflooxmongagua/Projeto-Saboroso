@@ -1,20 +1,36 @@
 var conn = require('./../inc/db');
-var menus = require('./../inc/menus');
-var reservations = require('./../inc/reservations')
 var express = require('express');
+var menus = require('./../inc/menus');
+var reservations = require('./../inc/reservations');
+var contacts = require('./../inc/contacts');
+var emails = require('./../inc/emails');
 var router = express.Router();
+
+
+
+module.exports = function(io){
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
 
   menus.getMenus().then(results => {
     res.render('index', { 
-      title: 'Sensational Restaurant!', 
+      title: 'Sensational Reustaurant!', 
       menus: results,
-      isHome: true,
-      background: 'images/img_bg_1.jpg' 
+      isHome: true
     });
   });
+
+  
+
+});
+
+router.get('/contacts', function(req, res, next) {
+
+
+
+  contacts.render(req, res);
 
 });
 
@@ -54,7 +70,9 @@ router.get('/menus', function(req, res, next) {
 });
 
 router.get('/reservations', function(req, res, next) {
+
   reservations.render(req, res);
+
 });
 
 router.post('/reservations', function(req, res, next) {
@@ -83,8 +101,7 @@ router.post('/reservations', function(req, res, next) {
 
 });
 
-
-router.get('/services', function(req, res, next){
+router.get('/services', function(req, res, next) {
   res.render('services', {
     title: 'Our Services',
      background: 'images/img_bg_1.jpg',
@@ -92,4 +109,19 @@ router.get('/services', function(req, res, next){
   });
 });
 
-module.exports = router;
+router.post("/subscribe", function(req,res,next){
+
+  emails.save(req).then(results=>{
+
+    res.send(results);
+
+  }).catch(err=>{
+    res.send(err);
+  });
+
+  
+});
+
+  return router;
+
+};
