@@ -18,9 +18,27 @@ router.get('/', function(req, res, next) {
 
 });
 
+router.post('/contacts', function(req, res, next) {
 
-router.get('/contacts', function(req, res, next){
-  res.render('contact', { title: "Contato" }); 
+  if(!req.body.name){
+    contacts.render(req, res, 'Digite o nome');
+  }else if(!req.body.email){
+    contacts.render(req, res, 'Digite o email');
+  }
+  else if(!req.body.message){
+    contacts.render(req, res, 'Digite a mensagem');
+  }
+  else{
+
+    contacts.save(req.body).then(results => {
+      req.body = {};
+      io.emit('dashboard update');
+      contacts.render(req, res, null, "Contato realizado com sucesso!");
+
+    }).catch(err => {
+      contacts.render(req, res, err.message);
+    });
+  }
 });
 
 router.get('/menus', function(req, res, next) {
