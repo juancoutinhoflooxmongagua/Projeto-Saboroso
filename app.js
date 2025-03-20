@@ -17,6 +17,34 @@ var io = socket(http);
 var indexRouter = require('./routes/index')(io);
 var adminRouter = require('./routes/admin')(io);
 
+app.use(function(req,res,next){
+
+  req.body= {};
+
+if (req.method === 'POST'){
+
+  var form = formidable.IncomingForm({
+    uploadDir: path.join(__dirname, "/public/images"),
+    keepExtensions: true
+  });
+
+  form.parse(req, function(err,fields, files){
+
+    req.body = fields;
+    req.fields = fields;
+    req.files = files;
+
+    next();
+
+  });
+
+} else{
+
+  next();
+}
+
+});
+
 app.use(session({
     store: new RedisStore({
       host:'localhost',
