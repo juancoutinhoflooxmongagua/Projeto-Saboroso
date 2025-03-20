@@ -6,6 +6,7 @@ var logger = require('morgan');
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
 var http = require('http');
+var formidable = require('formidable');
 var socket = require('socket.io');
 var bodyParser = require('body-parser');
 
