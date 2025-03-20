@@ -3,12 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-var session = require('express-session');
-var RedisStore = require('connect-redis')(session);
 var http = require('http');
-var formidable = require('formidable');
 var socket = require('socket.io');
 var bodyParser = require('body-parser');
+
+
+var session = require('express-session');
+var RedisStore = require('connect-redis')(session);
 
 var app = express();
 var http = http.Server(app);
@@ -17,40 +18,12 @@ var io = socket(http);
 var indexRouter = require('./routes/index')(io);
 var adminRouter = require('./routes/admin')(io);
 
-app.use(function(req,res,next){
-
-  req.body= {};
-
-if (req.method === 'POST'){
-
-  var form = formidable.IncomingForm({
-    uploadDir: path.join(__dirname, "/public/images"),
-    keepExtensions: true
-  });
-
-  form.parse(req, function(err,fields, files){
-
-    req.body = fields;
-    req.fields = fields;
-    req.files = files;
-
-    next();
-
-  });
-
-} else{
-
-  next();
-}
-
-});
-
 app.use(session({
     store: new RedisStore({
       host:'localhost',
       port:6379
     }),
-    secret: 'rootkk',
+    secret: 'keyboard cat',
     resave: true,
     saveUninitialized: true
 }));
@@ -96,6 +69,8 @@ io.on('connection', function (socket) {
 
 });
 
-http.listen(3000, () => {
+http.listen(3000, ()=>{
+
   console.log('Servidor em execução...');
+
 });
