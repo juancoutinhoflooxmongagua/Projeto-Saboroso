@@ -63,7 +63,7 @@ router.get('/menus', function(req, res, next) {
     res.render('menus', { 
       title: 'Our Menus', 
       background: 'images/img_bg_1.jpg',
-      h1: 'saboreie nosso main menu',
+      h1: 'Fique a vontade',
       menus: results
     });
   });
@@ -105,7 +105,7 @@ router.get('/services', function(req, res, next) {
   res.render('services', {
     title: 'Our Services',
      background: 'images/img_bg_1.jpg',
-    h1: 'q prazer obg'
+    h1: 'Olá a todos'
   });
 });
 

@@ -47,7 +47,7 @@ module.exports ={
         res.render('reservations', {
             title: 'Make a Reservation',
             background: 'images/img_bg_2.jpg',
-            h1: 'reserve sua mesa main',
+            h1: 'Quer fazer uma reserva?',
             body: req.body,
             error,success
         });
