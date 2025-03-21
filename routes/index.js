@@ -6,10 +6,7 @@ var contacts = require('./../inc/contacts');
 var emails = require('./../inc/emails');
 var router = express.Router();
 
-
-
 module.exports = function(io){
-
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -27,9 +24,6 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/contacts', function(req, res, next) {
-
-
-
   contacts.render(req, res);
 
 });
@@ -105,7 +99,7 @@ router.get('/services', function(req, res, next) {
   res.render('services', {
     title: 'Our Services',
      background: 'images/img_bg_1.jpg',
-    h1: 'Olá a todos'
+    h1: 'Olá'
   });
 });
 
