@@ -156,13 +156,11 @@
   </div>
 
   <%- include("inc/footer")-%>
-
-
-    <script src="\js\ad-formsave.js"></script>
-    <script src="\js\ad-grid.js"></script>
+  <script src="\js\hcode-formsave.js"></script>
+  <script src="\js\hcode-grid.js"></script>
     <script>
 
-      new AdGrid({
+      new HcodeGrid({
 
       deleteUrl: '/admin/users/${data.id}',
       deleteMsg: 'Deseja realmente excluir o usuário ${data.name}?',

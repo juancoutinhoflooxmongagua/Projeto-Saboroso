@@ -6,15 +6,11 @@ var logger = require('morgan');
 var http = require('http');
 var socket = require('socket.io');
 var bodyParser = require('body-parser');
-
-
 var session = require('express-session');
 var RedisStore = require('connect-redis')(session);
-
 var app = express();
 var http = http.Server(app);
 var io = socket(http);
-
 var indexRouter = require('./routes/index')(io);
 var adminRouter = require('./routes/admin')(io);
 
@@ -23,7 +19,7 @@ app.use(session({
       host:'localhost',
       port:6379
     }),
-    secret: 'keyboard cat',
+    secret: 'rootkkkk',
     resave: true,
     saveUninitialized: true
 }));

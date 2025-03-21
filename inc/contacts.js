@@ -6,7 +6,7 @@ module.exports ={
     res.render('contacts', {
         title: 'Contact Us',
         background: 'images/img_bg_3.jpg',
-        h1: 'diga oi',
+        h1: 'Olá',
         body: req.body,
         error,
         success
