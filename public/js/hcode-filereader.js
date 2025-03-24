@@ -1,32 +1,52 @@
-class HcodeFileReader {
+class HcodeFileReader{
 
     constructor(inputEl, imgEl){
 
-        inputEl.addEventListener('change', e=> {
+        this.inputEl = inputEl;
+        this.imgEl = imgEl;
+
+        this.initInputEvent();
+
+    }
+
+    initInputEvent(){
+
+        document.querySelector(this.inputEl).addEventListener("change", e=>{
+
+            this.reader(e.target.files[0]).then(result =>{
+
+                document.querySelector(this.imgEl).src = result;
+
+            });
+
+        });
+
+
+    }
+
+    reader(file){
+
+        return new Promise((resolve, reject)=>{
 
             let reader = new FileReader();
+            
+            reader.onload = function(){
 
-            reader.onload = e => {
+                resolve(reader.result)
 
-                imgEl.src = reader.result;
 
             }
+            reader.onerror = function(){
 
-            if (!inputEl.files.length) {
-                console.error('Nenhum arquivo foi selecionado.');
-                return false;
-            }
+                reject("Não foi possivel ler a imagem")
 
-            let file = inputEl.files[0];
-
-            if (['image/jpeg', 'image/gif', 'image/png'].indexOf(file.type) === -1) {
-                console.error('Apenas arquivos de imagem são permitidos.');
-                return false;
             }
 
             reader.readAsDataURL(file);
 
         });
+
+        
 
     }
 
