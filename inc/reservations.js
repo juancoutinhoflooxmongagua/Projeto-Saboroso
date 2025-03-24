@@ -45,9 +45,9 @@ module.exports ={
 
     render(req, res, error, success){
         res.render('reservations', {
-            title: 'Make a Reservation',
+            title: 'Faça a sua reserva',
             background: 'images/img_bg_2.jpg',
-            h1: 'Quer fazer uma reserva?',
+            h1: 'Reserva',
             body: req.body,
             error,success
         });
@@ -66,7 +66,6 @@ module.exports ={
 
             }
 
-          
             let query, params =[
                 fields.name,
                 fields.email, 

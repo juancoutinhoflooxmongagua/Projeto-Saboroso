@@ -6,7 +6,7 @@ module.exports ={
     res.render('contacts', {
         title: 'Contact Us',
         background: 'images/img_bg_3.jpg',
-        h1: 'Olá',
+        h1: 'Alo',
         body: req.body,
         error,
         success
@@ -48,4 +48,24 @@ module.exports ={
     });
 },
 
+delete(id){
+    return new Promise ((resolve, reject)=>{
+
+        conn.query(`
+            DELETE FROM tb_contacts WHERE id = ?
+            `
+        ,[
+            id
+        ],(err, results)=>{
+
+            if(err){
+                reject(err);
+            }else{
+                resolve(results);
+            }
+
+        });
+
+    })
+}
 }
