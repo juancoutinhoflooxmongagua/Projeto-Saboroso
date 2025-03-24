@@ -10,8 +10,6 @@ var router = express.Router();
 
 
 module.exports = function(io){
-
-
   moment.locale("pt-BR"); 
 
 router.use(function(req, res, next){
@@ -254,9 +252,7 @@ router.post('/reservations', function(req, res, next){
 
 });
 
-
 router.delete("/reservations/:id", function(req,res,next){
-
   reservations.delete(req.params.id).then(results =>{
     io.emit('dashboard update');
     res.send(results);
@@ -283,7 +279,6 @@ router.get('/users', function(req, res, next) {
 });
 
 router.post('/users', function(req, res, next) {
-
     users.save(req.fields).then(results =>{
       io.emit('dashboard update');
       res.send(results);
@@ -296,9 +291,7 @@ router.post('/users', function(req, res, next) {
 });
 
 router.post("/users/password-change", function(req,res,next) {
-
  users.changePassword(req).then(result => {
-
   res.send(results);
 
  }).catch((err) => {
@@ -312,7 +305,6 @@ router.post("/users/password-change", function(req,res,next) {
 })
 
 router.delete('/users/:id', function(req, res, next) {
-
   users.delete(req.params.id).then(results =>{
     io.emit('dashboard update');
     res.send(results);
@@ -327,8 +319,6 @@ router.delete('/users/:id', function(req, res, next) {
 router.get('/users', function(req, res, next) {
   res.render('admin/users', admin.getParams(req));
 });
-
-
 
   return router;
 

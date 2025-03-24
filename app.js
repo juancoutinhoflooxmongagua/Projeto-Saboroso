@@ -11,6 +11,22 @@ var RedisStore = require('connect-redis')(session);
 var app = express();
 var http = http.Server(app);
 var io = socket(http);
+
+io.on('connection', function (socket) {
+  console.log('usuário conectado');
+  socket.on('disconnect', function () {
+    console.log('user disconnected');
+  });
+
+  io.emit("reservations update", {
+    date: new Date()
+  })
+});
+
+http.listen(3000, ()=>{
+  console.log('Servidor em execução...');
+});
+
 var indexRouter = require('./routes/index')(io);
 var adminRouter = require('./routes/admin')(io);
 
@@ -51,22 +67,4 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-io.on('connection', function (socket) {
-
-  console.log('a user connected');
-
-  socket.on('disconnect', function () {
-
-    console.log('user disconnected');
-
-  });
-
-});
-
-http.listen(3000, ()=>{
-
-  console.log('Servidor em execução...');
-
 });
